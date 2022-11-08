@@ -1,8 +1,11 @@
 # Exercise-07-Multiplexer-and-De-multiplexer
-### AIM: To implement 4 X1 multiplexer and 1X4 de multiplexer using verilog and validate its outputs
-### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
-### SOFTWARE REQUIRED:   Quartus prime
-### THEORY 
+# AIM: 
+To implement 4 X1 multiplexer and 1X4 de multiplexer using verilog and validate its outputs
+# HARDWARE REQUIRED:
+PC, Cyclone II , USB flasher
+# SOFTWARE REQUIRED:  
+Quartus prime
+# THEORY: 
 
 ## What are Multiplexer and Demultiplexer?
 In-network transmission, both the multiplexer and demultiplexer are combinational circuits. A multiplexer selects an input from several inputs then it is transmitted in the form of a single line. An alternative name of the multiplexer is MUX or data selector. A demultiplexer uses one input signal and generates many. So it is known as Demux or data distributor.
@@ -46,43 +49,85 @@ If the control input changes to AB = 10, then all the gates are restricted excep
 
  
  
-### Procedure
-/* write all the steps invloved */
+# Procedure:
+### Step1: 
+Start the module.
+
+### Step2:
+ Declare the inputs and outputs along with the select lines according to the multiplexer and demultiplexer.
+
+### Step3:
+ Use wire to assign intermediate outputs.
+
+### Step4:
+ Use and,or and not gates to get the desired output.
+
+### Step5:
+ End the module.
+
+### Step6: 
+Generate RTL realization and timing diagrams.
 
 
 
-### PROGRAM 
+# PROGRAM: 
 /*
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
+
+Developed by: SUBRAMANIYA PILLAI B
+
+RegisterNumber: 212221230109
+
 */
+## MUX:
+```
+module mux(s1,s2,ip,iq,ir,is,y);
+input s1,s2,ip,iq,ir,is;
+output y;
+wire a,b,c,d,e,f;
+assign e = ~s1;
+assign f = ~s2;
+assign a = ip & e & f;
+assign b =  iq & e & s2;
+assign c = ir & s1 & f;
+assign d = is & s1 & s2;
+assign y = a | b | c | d;
+endmodule
+```
+## DEMUX:
+```
+module demux(Y0,Y1,Y2,Y3,S0,S1,I);
+input S0,S1,I;
+output Y0,Y1,Y2,Y3;
+wire S0C,S1C;
+not(S0C,S0);
+not(S1C,S1);
+and(Y0,I,S0C,S1C);
+and(Y1,I,S0C,S1);
+and(Y2,I,S0,S1C);
+and(Y3,I,S0,S1);
+endmodule
+```
 
+# OUTPUT:
+# RTL LOGIC:
+## MUX:
+![](./m1.png)
+## DEMUX:  
+![](./d1.png)
+# TIMING DIGRAMS:  
+## MUX:
+![](./m2.png)
+![](./m3.png)
+![](./m4.png)
+![](./m5.png)
+## DEMUX:  
+![](./d2.png)
+# TRUTH TABLE: 
+## MUX:
+![](./m6.png)
+## DEMUX:  
+![](./d3.png)
 
-
-
-
-
-### RTL LOGIC  
-
-
-
-
-
-
-
-
-### TIMING DIGRAMS  
-
-
-
-
-
-### TRUTH TABLE 
-
-
-
-
-
-
-### RESULTS 
+# RESULT: 
+Hence 4x1 Multiplexer and 1x4 Demultiplexer is been implemented and verified using verilog programming and its output are validated.
